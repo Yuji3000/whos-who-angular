@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+@use './styles/m3-theme';
+
+@include mat.core(); // Be sure that you only ever include this mixin once!
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html {
+  // Apply the light theme by default for all components (includes core theme)
+  @include mat.all-component-themes(m3-theme.$dark-theme);
+
+  // Include your system variables
+  @include mat.system-level-colors(m3-theme.$dark-theme);
+  @include mat.system-level-typography(m3-theme.$dark-theme);
+}
+
+.light-theme {
+  @include mat.all-component-colors(m3-theme.$light-theme);
+
+  @include mat.system-level-colors(m3-theme.$light-theme);
+  @include mat.system-level-typography(m3-theme.$light-theme);
+}

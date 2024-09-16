@@ -26,6 +26,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles/m3-theme.scss",
               "src/styles.css"
             ],
             "scripts": [],
@@ -92,6 +93,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles/m3-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
