@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-whos-who:build:production"
+              "buildTarget": "angular-whos-who:build:production"
             },
             "development": {
-              "browserTarget": "angular-whos-who:build:development"
+              "buildTarget": "angular-whos-who:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-whos-who:build"
+            "buildTarget": "angular-whos-who:build"
           }
         },
         "test": {
