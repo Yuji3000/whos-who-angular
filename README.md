@@ -2,7 +2,7 @@
 
 # Overview
 
-For this project, students are tasked with developing a front-end Angular application that interfaces with [Spotify's API](https://developer.spotify.com/documentation/web-api) in order to build a guessing game application. Students will read through the provided [REQUIREMENTS.md](REQUIREMENDS.md) file and use it to plan the application they will create with their team. After getting approval from their primary instructor they will develop the application and conduct an app demo on the end of the second group project.
+For this project, students are tasked with developing a front-end Angular application that interfaces with [Spotify's API](https://developer.spotify.com/documentation/web-api) in order to build a guessing game application. Students will read through the provided [REQUIREMENTS.md](REQUIREMENTS.md) file and use it to plan the application they will create with their team. After getting approval from their primary instructor they will develop the application and conduct an app demo on the end of the second group project.
 
 ## Project Planning
 
