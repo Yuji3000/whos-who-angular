@@ -3,6 +3,5 @@
   flex-direction: column;
   width: 40vw;
   height: 40vh;
-  margin-top: 20%;
-  margin-left: 37%;
+  margin: 20% auto 0;
 }

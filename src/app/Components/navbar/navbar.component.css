@@ -1,12 +1,9 @@
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  border-bottom: 1px solid black;
+.nav-link {
+  color: white;
 }
 
-.mat-nav-button {
-  color: var(--primary-60);
+.nav-link.active {
+  background-color: var(--sys-primary-container);
 }
 
 .spacer{

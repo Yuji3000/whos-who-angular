@@ -6,6 +6,7 @@ import { LeaderboardComponent } from 'src/app/leaderboard/leaderboard.component'
 import { SettingsComponent } from 'src/app/settings/settings.component';
 import { MatButton } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,13 +14,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     CommonModule,
     RouterOutlet,
-    HomeComponent,
-    NavbarComponent, 
+    HomeComponent, 
     SettingsComponent, 
     LeaderboardComponent, 
     RouterLink,
     MatButton,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterLinkActive
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
