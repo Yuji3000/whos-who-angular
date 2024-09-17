@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import fetchFromSpotify, { request } from "../../services/api";
-import { NgIf, NgFor } from "@angular/common";
+
 import { FormsModule } from "@angular/forms";
 
 const AUTH_ENDPOINT =
@@ -13,10 +13,8 @@ const TOKEN_KEY = "whos-who-access-token";
     styleUrls: ["./home.component.css"],
     standalone: true,
     imports: [
-        NgIf,
-        FormsModule,
-        NgFor,
-    ],
+    FormsModule
+],
 })
 export class HomeComponent implements OnInit {
   constructor() {}
