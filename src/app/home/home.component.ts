@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import fetchFromSpotify, { request } from "../../services/api";
 
 import { FormsModule } from "@angular/forms";
+import {MatIcon} from "@angular/material/icon";
 
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
@@ -12,9 +13,10 @@ const TOKEN_KEY = "whos-who-access-token";
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.css"],
     standalone: true,
-    imports: [
-    FormsModule
-],
+  imports: [
+    FormsModule,
+    MatIcon
+  ],
 })
 export class HomeComponent implements OnInit {
   constructor() {}
