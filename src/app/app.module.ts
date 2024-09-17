@@ -10,11 +10,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 const routes: Routes = [{ path: "", component: HomeComponent }];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
-  providers: [
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes), HomeComponent],
+    providers: [
+        provideAnimationsAsync()
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
