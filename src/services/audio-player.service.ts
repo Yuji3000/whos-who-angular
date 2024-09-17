@@ -8,6 +8,7 @@ import { Howl } from 'howler';
 
 export class AudioPlayerService {
   private sound: any;
+  private currentSeek: number = 0;
 
   constructor() {}
 
@@ -21,6 +22,9 @@ export class AudioPlayerService {
       autoplay: false,
       onloaderror: (error) => {
         console.error('Error loading audio:', error);
+      },
+      onplay: () => {
+        this.currentSeek = this.sound?.seek() || 0; 
       }
     });
   }
@@ -28,20 +32,33 @@ export class AudioPlayerService {
   async play() {
     try {
       if (Howler.ctx.state === 'suspended') {
-        // Resume AudioContext if suspended
         await Howler.ctx.resume();
       }
       this.sound.play();
+      this.sound.seek(this.currentSeek);
     } catch (error) {
       console.error('Error playing sound:', error);
     }
   }
   
   pause() {
-    this.sound.pause();
+    if (this.sound) {
+      this.sound.pause();
+      this.currentSeek = this.sound.seek(); 
+    }
   }
 
   stop() {
-    this.sound.stop();
+    if (this.sound) {
+      this.sound.stop();
+      this.currentSeek = 0;
+    }
   }
+
+  seek(position: number) {
+    if (this.sound) {
+      this.sound.seek(position); 
+    }
+  }
+  
 }

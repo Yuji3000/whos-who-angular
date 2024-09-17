@@ -1,13 +1,20 @@
-<div >
-  <button mat-icon-button (click)="playAudio()">
-    <mat-icon fontSet="material-symbols-outlined">play_circle</mat-icon>
-  </button>
+<mat-card appearance="outlined">
+      <ng-container *ngIf="!songPlaying">
+        <button mat-icon-button (click)="playAudio()">
+          <mat-icon fontSet="material-symbols-outlined">play_circle</mat-icon>
+        </button>
+      </ng-container>
 
-  <button mat-icon-button (click)="pauseAudio()">
-    <mat-icon fontSet="material-symbols-outlined">pause_circle</mat-icon>
-  </button>
+      <ng-container *ngIf="songPlaying">
+        <button mat-icon-button (click)="pauseAudio()">
+          <mat-icon fontSet="material-symbols-outlined">pause_circle</mat-icon>
+        </button>
+      </ng-container>
+  
+      <button mat-icon-button (click)="stopAudio()">
+        <mat-icon fontSet="material-symbols-outlined">stop_circle</mat-icon>
+      </button>
+</mat-card>
 
-  <button mat-icon-button (click)="stopAudio()">
-    <mat-icon fontSet="material-symbols-outlined">stop_circle</mat-icon>
-  </button>
-</div>
+
+

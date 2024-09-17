@@ -1,0 +1,11 @@
+mat-chip-set {
+  display: flex;
+  width: 100%; 
+}
+
+mat-chip {
+  flex: 1; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
