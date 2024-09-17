@@ -1,11 +1,17 @@
-<div *ngIf="authLoading || configLoading">Loading...</div>
-<div *ngIf="!authLoading && !configLoading">
-  Genre:
-  <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)">
-    <option [value]=""></option>
-    <option [value]="genre" *ngFor="let genre of genres">
-      {{ genre }}
-    </option>
-  </select>
-    <mat-icon fontSet="material-symbols-outlined">face</mat-icon>
-</div>
+@if (authLoading || configLoading) {
+  <div>Loading...</div>
+}
+@if (!authLoading && !configLoading) {
+  <div>
+    Genre:
+    <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)">
+      <option [value]=""></option>
+      @for (genre of genres; track genre) {
+        <option [value]="genre">
+          {{ genre }}
+        </option>
+      }
+    </select>
+      <mat-icon fontSet="material-symbols-outlined">face</mat-icon>
+  </div>
+}
