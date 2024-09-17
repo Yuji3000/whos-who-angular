@@ -27,7 +27,7 @@
             ],
             "styles": [
               "src/styles/m3-theme.scss",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "browser": "src/main.ts"
@@ -94,7 +94,7 @@
             ],
             "styles": [
               "src/styles/m3-theme.scss",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
