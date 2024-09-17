@@ -1,6 +1,11 @@
 <nav class="navbar">
-  <a routerLink="/" routerLinkActive="active"><h1>Who's Who?</h1></a>
-  <a routerLink="/leaderboards" routerLinkActive="active"><h1 class="link">Leaderboards</h1></a>
-  <a routerLink="/settings"><h1 class="link">Settings</h1></a>
 </nav>
+
+<mat-toolbar color="primary">
+  
+  <button mat-button routerLink="/" routerLinkActive="active">Who's Who?</button>
+  <div class="spacer"></div>
+  <button mat-button routerLink="/leaderboards" routerLinkActive="active">Leaderboards</button>
+  <button mat-button routerLink="/settings">Settings</button>
+ </mat-toolbar>
 <router-outlet></router-outlet>

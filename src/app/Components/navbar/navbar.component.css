@@ -4,3 +4,11 @@
   justify-content: space-evenly;
   border-bottom: 1px solid black;
 }
+
+.mat-nav-button {
+  color: var(--primary-60);
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
