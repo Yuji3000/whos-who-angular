@@ -1,12 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 
 import { FormsModule } from "@angular/forms";
-import {MatIcon} from "@angular/material/icon";
+import { MatIcon} from "@angular/material/icon";
 import {PlaylistService, Track} from "../../services/playlist/playlist.service";
 import {MatAnchor, MatButton} from "@angular/material/button";
 import { SettingsComponent } from "../settings/settings.component";
 import { RouterOutlet } from "@angular/router";
 import { RouterLink } from "@angular/router";
+import { AudioPlayerComponent } from "../audio-player/audio-player.component";
 
 @Component({
     selector: "app-home",
@@ -21,18 +22,15 @@ import { RouterLink } from "@angular/router";
     MatIcon,
     SettingsComponent,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    AudioPlayerComponent
   ],
 })
 export class HomeComponent implements OnInit {
   constructor(private playlist: PlaylistService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  // loadGenres = async (t: any) => {
-  //   this.configLoading = true;
   track: Track | undefined;
   loadTrackButtonDisabled = false;
 
