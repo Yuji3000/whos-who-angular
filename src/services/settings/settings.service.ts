@@ -17,15 +17,15 @@ export class SettingsService {
   constructor() { }
 
   getSettings(): any {
+    // Retrieves settings from localStorage
     const settings = localStorage.getItem(this.settingsKey);
-    // console.log('Retrieved settings from localStorage:', settings);
+
+    // parsed settings returns e.g. {mode: 'medium', numberOfQuestions: 10}
     const parsedSettings = settings ? JSON.parse(settings) : this.getDefaultSettings();
-    // console.log('Parsed settings:', parsedSettings);
     return parsedSettings;
   }
 
   saveSettings(settings: any): void {
-    // console.log('Saving settings:', settings);
     localStorage.setItem(this.settingsKey, JSON.stringify(settings));
   }
 

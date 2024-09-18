@@ -31,18 +31,24 @@ export class SettingsFormComponent {
   settingForm: FormGroup = new FormGroup({
     numberOfQuestions: new FormControl('', [
       Validators.required,
-      Validators.maxLength(2),
       Validators.min(5),
-      Validators.max(20),
-      Validators.pattern('^[0-9]*$')
+      Validators.max(25)
     ]),
     mode: new FormControl(undefined, [Validators.required])
   })
 
+  constructor(private settingsService: SettingsService) { }
+
+  ngOnInit(): void {
+    const settings = this.settingsService.getSettings()
+  }
 
   onSubmit() {
-    console.log(`Number of questions: ${this.settingForm.controls['numberOfQuestions'].value}`)
-    console.log(`mode: ${this.settingForm.controls['mode'].value}`)
-    console.log('valid?', this.settingForm.valid);
+    if (this.settingForm.valid) {
+      const updatedSettings = this.settingForm.value;
+      this.settingsService.saveSettings(updatedSettings)
+    } else {
+      console.log('Form is invalid. Please correct errors.')
+    }
   }
 }

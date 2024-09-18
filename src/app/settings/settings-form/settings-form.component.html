@@ -2,26 +2,25 @@
   
   <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
       <label for="numberOfQuestions">Number Of Questions:</label>
-      <input type="text" name="numberOfQuestions" class="input-style" formControlName="numberOfQuestions"/>
+      <input id="numberOfQuestions" type="number" name="numberOfQuestions" class="input-style" formControlName="numberOfQuestions"/>
 
       <ng-container *ngIf="settingForm.controls['numberOfQuestions'].touched && settingForm.controls['numberOfQuestions'].errors">
         <div *ngIf="settingForm.controls['numberOfQuestions'].errors['required']" class="error">Required</div>
-        <div *ngIf="settingForm.controls['numberOfQuestions'].errors['maxlength']" class="error"> Number Of Questions Must Be Between 5 - 20</div>
-        <div *ngIf="settingForm.controls['numberOfQuestions'].errors['pattern']" class="error"> Must Enter Numbers Only</div>
+        <div *ngIf="settingForm.controls['numberOfQuestions'].errors['max']" class="error"> Number of Questions must be between 5 - 25</div>
+        <div *ngIf="settingForm.controls['numberOfQuestions'].errors['min']" class="error"> Number of Questions must be between 5 - 25</div>
       </ng-container>
       
-      <ng-container *ngIf="settingForm.controls['mode'].errors">
-        <div *ngIf="settingForm.controls['mode'].errors['required']" class="error">Mode Required</div>
+      <ng-container *ngIf="settingForm.controls['mode'].errors && settingForm.controls['mode'].touched">
+        <div *ngIf="settingForm.controls['mode'].errors!['required']" class="error">Mode Required</div>
       </ng-container>
 
       <label for="mode">Difficulty Mode</label>
-      <select formControlName="mode">  
+      <select id="mode" formControlName="mode">  
         <option *ngFor="let mode of difficultyModes" [ngValue]="mode.mode">
           {{ mode.mode | titlecase }}
         </option> 
       </select>
-      <button >Update Settings</button>
-      <!-- [disabled]="settingForm.invalid" [ngClass]="settingForm.invalid ? 'disabled' : ''" -->
+      <button [disabled]="settingForm.invalid" [ngClass]="settingForm.invalid ? 'disabled' : ''">Update Settings</button>
     </form>
 
   </div>
