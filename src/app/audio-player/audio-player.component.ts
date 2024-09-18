@@ -3,16 +3,24 @@ import { AudioPlayerService } from 'src/services/audio-player.service';
 import { MatIcon } from "@angular/material/icon";
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-audio-player',
   standalone: true,
-  imports: [MatIcon, CommonModule, MatCardModule],
+  imports: [MatIcon, CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './audio-player.component.html',
   styleUrl: './audio-player.component.css'
 })
 export class AudioPlayerComponent {
-  @Input() audioSrc?: string;  
+
+  @Input()
+  set audioSrc(newSrc: string) {
+    this.stopAudio();
+    this.audioPlayerService.loadAudio(newSrc);
+    this.playAudio();
+  }
+
   songPlaying: boolean = false;
 
   constructor(private audioPlayerService: AudioPlayerService) {}

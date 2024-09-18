@@ -1,4 +1,4 @@
-mat-card {
+.card {
   width: 10%;
   display: flex;
   flex-direction: row;
@@ -6,4 +6,6 @@ mat-card {
   justify-content: space-evenly;
 }
 
-
+.icon-display {
+  transform: scale(2);
+}
