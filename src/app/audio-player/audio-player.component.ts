@@ -32,8 +32,9 @@ export class AudioPlayerComponent {
   }
   
   playAudio() {
-    this.audioPlayerService.play();
-    this.songPlaying = true
+    this.audioPlayerService.play().then(() => {
+      this.songPlaying = true;
+    })
   }
 
   pauseAudio() {

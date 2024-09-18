@@ -1,23 +1,17 @@
 <div class="card" appearance="outlined">
-  <div>
-    <ng-container *ngIf="!songPlaying">
-      <button mat-flat-button (click)="playAudio()">
-        <mat-icon class="icon-display" fontSet="material-symbols-outlined">play_circle</mat-icon>
-      </button>
-    </ng-container>
-  </div>
-  <div>
-    <ng-container *ngIf="songPlaying">
-      <button mat-flat-button (click)="pauseAudio()">
-        <mat-icon class="icon-display" fontSet="material-symbols-outlined">pause_circle</mat-icon>
-      </button>
-    </ng-container>
-  </div>
-  <div>
-    <button mat-flat-button (click)="stopAudio()">
-      <mat-icon class="icon-display" fontSet="material-symbols-outlined">stop_circle</mat-icon>
+  @if (!songPlaying) {
+    <button mat-flat-button (click)="playAudio()">
+      <mat-icon class="icon-display" fontSet="material-symbols-outlined">play_circle</mat-icon>
     </button>
-  </div>
+  }
+  @if (songPlaying) {
+    <button mat-flat-button (click)="pauseAudio()">
+        <mat-icon class="icon-display" fontSet="material-symbols-outlined">pause_circle</mat-icon>
+    </button>
+  }
+  <button mat-flat-button (click)="stopAudio()">
+    <mat-icon class="icon-display" fontSet="material-symbols-outlined">stop_circle</mat-icon>
+  </button>
 </div>
 
 
