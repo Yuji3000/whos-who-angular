@@ -1,11 +1,9 @@
-mat-chip-set {
+mat-card {
+  width: 10%;
   display: flex;
-  width: 100%; 
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-mat-chip {
-  flex: 1; 
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-}
+

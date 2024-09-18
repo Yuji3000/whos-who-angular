@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-
   track: Track | undefined;
   loadTrackButtonDisabled = false;
 
