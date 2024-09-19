@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatIcon} from "@angular/material/icon";
-import { PlaylistService, Track } from "../../services/playlist/playlist.service";
 import { MatAnchor, MatButton } from "@angular/material/button";
 import { SettingsComponent } from "../settings/settings.component";
 import { RouterOutlet } from "@angular/router";
@@ -27,11 +26,4 @@ import {PlaylistLoaderComponent} from "../playlist-loader/playlist-loader.compon
     PlaylistLoaderComponent
   ],
 })
-export class HomeComponent implements OnInit {
-  constructor(private playlist: PlaylistService) {}
-
-  ngOnInit(): void {}
-
-  track: Track | undefined;
-  loadTrackButtonDisabled = false;
-}
+export class HomeComponent {}
