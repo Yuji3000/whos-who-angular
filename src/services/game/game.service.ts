@@ -21,6 +21,7 @@ export class GameService {
   private questionsRemaining: number = 0;
   private songIndicesToIgnore: Set<number> = new Set<number>;
   private _loadingProgress: number = 0;
+  private _acknowledgeGameOver = false;
 
   constructor(private playlistService: PlaylistService) {
     this.questionsRemaining = this._questionsPreferred;
@@ -139,7 +140,8 @@ export class GameService {
     return answerResponse;
   }
 
-  // These getters are meant to be used by other components and services that need information for the current game
+  // These getters and setters are meant to be used by other components and services
+  // that need information for the current game
 
   get loadingProgress() {
     return this._loadingProgress;
@@ -169,5 +171,15 @@ export class GameService {
 
   get playerScore() {
     return Math.floor((this._questionsAnsweredCorrectly / this._questionsPreferred) * 100);
+  }
+
+  set acknowledgeGameOver(acknowledge: boolean) {
+    if (this.isGameOver) {
+      this._acknowledgeGameOver = acknowledge;
+    }
+  }
+
+  get acknowledgeGameOver() {
+    return this._acknowledgeGameOver;
   }
 }
