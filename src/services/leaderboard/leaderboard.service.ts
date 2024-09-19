@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {LeaderboardTableItem} from "../../app/leaderboard/leaderboard-table/leaderboard-table-datasource";
 import {StandardGameStringEnum} from "../game/standard-game.enum";
 
@@ -39,7 +39,7 @@ export class LeaderboardService {
 
     this.insertEntry(entry, currentLeaderboardItems);
 
-    this.saveLeaderboardItems(`LEADERBOARDS_${difficulty}`, currentLeaderboardItems);
+    this.saveLeaderboardItems(this.buildLeaderboardKey(difficulty), currentLeaderboardItems);
 
     switch (difficulty) {
       case StandardGameStringEnum.EASY:
@@ -54,7 +54,12 @@ export class LeaderboardService {
     }
   }
 
-  private getSavedLeaderboardItems(key: string): LeaderboardTableItem[] {
+  private buildLeaderboardKey(difficulty: StandardGameStringEnum) {
+    return `LEADERBOARDS_${difficulty}`;
+  }
+
+  private getSavedLeaderboardItems(difficulty: StandardGameStringEnum): LeaderboardTableItem[] {
+    const key = this.buildLeaderboardKey(difficulty);
     const data = localStorage.getItem(key);
 
     return data ? JSON.parse(data) : [];
@@ -65,13 +70,13 @@ export class LeaderboardService {
   }
 
   public loadExampleData() {
-    this.saveLeaderboardItems("LEADERBOARDS_EASY", this.EASY_EXAMPLE_DATA);
+    this.saveLeaderboardItems(this.buildLeaderboardKey(StandardGameStringEnum.EASY), this.EASY_EXAMPLE_DATA);
     this.easyLeaderboardItems = this.EASY_EXAMPLE_DATA;
 
-    this.saveLeaderboardItems("LEADERBOARDS_NORMAL", this.NORMAL_EXAMPLE_DATA);
+    this.saveLeaderboardItems(this.buildLeaderboardKey(StandardGameStringEnum.EASY), this.NORMAL_EXAMPLE_DATA);
     this.normalLeaderboardItems = this.NORMAL_EXAMPLE_DATA;
 
-    this.saveLeaderboardItems("LEADERBOARDS_HARD", this.HARD_EXAMPLE_DATA);
+    this.saveLeaderboardItems(this.buildLeaderboardKey(StandardGameStringEnum.EASY), this.HARD_EXAMPLE_DATA);
     this.hardLeaderboardItems = this.HARD_EXAMPLE_DATA;
   }
 
