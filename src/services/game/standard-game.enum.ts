@@ -3,3 +3,9 @@ export enum StandardGameEnum {
     NORMAL = 0.7,
     HARD = 0.9
 }
+
+export enum StandardGameStringEnum {
+    EASY = "EASY",
+    NORMAL = "NORMAL",
+    HARD = "HARD",
+}

@@ -1,0 +1,39 @@
+<div class="mat-elevation-z2">
+  <table mat-table matSortActive="rank" matSortDirection="asc" class="full-width-table app-table" matSort aria-label="Elements">
+    <!-- Rank Column -->
+    <ng-container matColumnDef="rank">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rank</th>
+      <td mat-cell *matCellDef="let row">{{row.rank}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+      <!-- Questions Answered Column -->
+      <ng-container matColumnDef="questionsAnswered">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Questions Answered</th>
+          <td mat-cell *matCellDef="let row">{{row.questionsAnswered}}</td>
+      </ng-container>
+
+      <!-- Score Column -->
+      <ng-container matColumnDef="score">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Score</th>
+          <td mat-cell *matCellDef="let row">{{row.score}}</td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      class="app-table"
+      aria-label="Select page">
+  </mat-paginator>
+</div>
