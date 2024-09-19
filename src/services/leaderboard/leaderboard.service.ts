@@ -13,9 +13,9 @@ export type Entry = {
 })
 export class LeaderboardService {
 
-  easyLeaderboardItems: LeaderboardTableItem[];
-  normalLeaderboardItems: LeaderboardTableItem[];
-  hardLeaderboardItems: LeaderboardTableItem[];
+  private easyLeaderboardItems: LeaderboardTableItem[];
+  private normalLeaderboardItems: LeaderboardTableItem[];
+  private hardLeaderboardItems: LeaderboardTableItem[];
 
   constructor() {
     this.easyLeaderboardItems = this.getSavedLeaderboardItems(StandardGameStringEnum.EASY);

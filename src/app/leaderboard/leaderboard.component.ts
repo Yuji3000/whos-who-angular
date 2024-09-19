@@ -39,6 +39,5 @@ export class LeaderboardComponent {
 
   postScoreExample() {
     this.leaderboardService.postScoreToLeaderboard(this.exampleEntry, StandardGameStringEnum.HARD);
-    console.log(this.leaderboardService.hardLeaderboardItems);
   }
 }
