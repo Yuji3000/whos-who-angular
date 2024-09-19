@@ -9,8 +9,10 @@ import {GameService} from "../../../services/game/game.service";
   styleUrl: './results.component.css'
 })
 export class ResultsComponent {
-
+  gameWon = false;
+  
   constructor(private gameService: GameService) {}
+
 
   get gameResultText() {
     return this.gameService.playerWon ?
