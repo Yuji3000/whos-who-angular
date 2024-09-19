@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import {StandardGameEnum} from "../../../services/game/standard-game.enum";
 
 export interface LeaderboardTableItem {
   rank: number;

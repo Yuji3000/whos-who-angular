@@ -6,3 +6,9 @@
 
     margin: 2rem 5rem 0;
 }
+
+.empty-message {
+    min-width: 80vw;
+    text-align: center;
+    margin-top: 2rem;
+}

@@ -16,8 +16,18 @@ export class LeaderboardTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<LeaderboardTableItem>;
 
+  loading = true;
+  private _data!: LeaderboardTableItem[];
+
   @Input({ required: true })
-  data!: LeaderboardTableItem[]
+  set data(data: LeaderboardTableItem[]) {
+    this._data = data;
+
+    if (this.loading) return;
+
+    this.dataSource = new LeaderboardTableDataSource(data);
+    this.setupTable();
+  }
 
   dataSource!: LeaderboardTableDataSource;
 
@@ -25,10 +35,17 @@ export class LeaderboardTableComponent implements OnInit, AfterViewInit {
   displayedColumns = ['rank', 'name', 'questionsAnswered', 'score'];
 
   ngOnInit(): void {
-    this.dataSource = new LeaderboardTableDataSource(this.data);
+    this.dataSource = new LeaderboardTableDataSource(this._data);
   }
 
   ngAfterViewInit(): void {
+
+
+    this.setupTable();
+    this.loading = false;
+  }
+
+  private setupTable() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;

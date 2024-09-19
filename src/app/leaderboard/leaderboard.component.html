@@ -2,14 +2,27 @@
     <h1>Leaderboards</h1>
     <mat-tab-group>
         <mat-tab label="Easy">
-            <app-leaderboard-table [data]="getLeaderboardItems('LEADERBOARDS_EASY')"></app-leaderboard-table>
+            @if (easyLeaderboardItems.length > 0) {
+                <app-leaderboard-table [data]="easyLeaderboardItems"></app-leaderboard-table>
+            } @else {
+                <h2 class="empty-message">No leaderboard data available for this mode. Be the first!</h2>
+            }
         </mat-tab>
-        <mat-tab label="Medium">
-            <app-leaderboard-table [data]="getLeaderboardItems('LEADERBOARDS_MEDIUM')"></app-leaderboard-table>
+        <mat-tab label="Normal">
+            @if (normalLeaderboardItems.length > 0) {
+                <app-leaderboard-table [data]="normalLeaderboardItems"></app-leaderboard-table>
+            } @else {
+                <h2 class="empty-message">No leaderboard data available for this mode. Be the first!</h2>
+            }
         </mat-tab>
         <mat-tab label="Hard">
-            <app-leaderboard-table [data]="getLeaderboardItems('LEADERBOARDS_HARD')"></app-leaderboard-table>
+            @if (hardLeaderboardItems.length > 0) {
+                <app-leaderboard-table [data]="hardLeaderboardItems"></app-leaderboard-table>
+            } @else {
+                <h2 class="empty-message">No leaderboard data available for this mode. Be the first!</h2>
+            }
         </mat-tab>
     </mat-tab-group>
 
+    <button mat-flat-button (click)="postScoreToLeaderboard(exampleEntry, StandardGameStringEnum.HARD)">Post Example to Hard</button>
 </div>
