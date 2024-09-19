@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
+interface DifficultyMode {
+  mode: string,
+  winPercentage: number
+}
+
+interface GameSettings {
+  mode: DifficultyMode;
+  numberOfQuestions: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -8,32 +18,49 @@ import { Injectable } from '@angular/core';
 export class SettingsService {
   private readonly settingsKey = 'gameSettings';
 
-  difficultyModes = [
+  numberOfQuestions: number = 0;
+  difficultyModes: DifficultyMode[] = [
     { mode: 'easy', winPercentage: 50 },
     { mode: 'medium', winPercentage: 70 },
     { mode: 'hard', winPercentage: 90 }
   ];
 
-  constructor() { }
+  private settingsSource = new BehaviorSubject<GameSettings>(this.getSettings());
+  currentSettings = this.settingsSource.asObservable();
+  
 
-  getSettings(): any {
-    // Retrieves settings from localStorage
-    const settings = localStorage.getItem(this.settingsKey);
-
-    // parsed settings returns e.g. {mode: 'medium', numberOfQuestions: 10}
-    const parsedSettings = settings ? JSON.parse(settings) : this.getDefaultSettings();
-    return parsedSettings;
+  getSettings(): GameSettings {
+    const storedSettings = localStorage.getItem(this.settingsKey);
+    console.log('(settings.service) Retrieved settings from localstorage:', storedSettings);
+    return storedSettings ? JSON.parse(storedSettings) : this.getDefaultSettings();
   }
 
-  saveSettings(settings: any): void {
-    localStorage.setItem(this.settingsKey, JSON.stringify(settings));
-  }
-
-
-  private getDefaultSettings(): any {
+  getDefaultSettings(): GameSettings {
     return {
-      mode: 'medium',
-      numeberOfQuestions: 10,
+      mode: this.difficultyModes[1],
+      numberOfQuestions: 10,
     };
+  }
+
+  updateSettings(newSettings: Partial<GameSettings>) {
+    const currentSettings = this.settingsSource.value;
+    const updatedSettings = { ...currentSettings, ...newSettings };
+    this.settingsSource.next(updatedSettings);
+    this.saveSettings(updatedSettings);
+  }
+
+  updateMode(mode: string) {
+    const selectedMode = this.difficultyModes.find(d => d.mode === mode);
+    if (selectedMode) {
+      this.updateSettings({ mode: selectedMode });
+    }
+  }
+
+  updateNumberOfQuestions(numberOfQuestions: number) {
+    this.updateSettings({ numberOfQuestions });
+  }
+
+  saveSettings(settings: GameSettings) {
+    localStorage.setItem(this.settingsKey, JSON.stringify(settings));
   }
 }
