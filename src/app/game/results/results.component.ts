@@ -4,7 +4,7 @@ import { LeaderboardService } from 'src/services/leaderboard/leaderboard.service
 import { StandardGameEnum, StandardGameStringEnum } from 'src/services/game/standard-game.enum';
 import { ResultsFormComponent } from "./results-form/results-form.component";
 import { TitleCasePipe } from '@angular/common';
-
+import { CommonModule } from '@angular/common';
 export type Entry = {
   name: string,
   score: number,
@@ -14,17 +14,19 @@ export type Entry = {
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [ResultsFormComponent, TitleCasePipe],
+  imports: [ResultsFormComponent, TitleCasePipe, CommonModule],
   templateUrl: './results.component.html',
   styleUrl: './results.component.css'
 })
 export class ResultsComponent {
   playerName: string = ''; 
   currentDifficulty: StandardGameStringEnum = StandardGameStringEnum.NORMAL;
+  resultBoolean: boolean = false;
 
   constructor(private gameService: GameService, private leaderboardService: LeaderboardService) {}
 
   get gameResultText() {
+    this.resultBoolean = this.gameService.playerWon
     return this.gameService.playerWon ? "You won!" : "Aw shucks, you lost!";
   }
 

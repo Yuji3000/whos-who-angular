@@ -36,6 +36,8 @@ export class ResultsFormComponent {
       setTimeout(() => {
         this.showSuccessMessage = false;
       }, 2000);
+      
+      this.nameForm.reset();
     } else {
       console.log("Name Form Error", this.nameForm.controls['name'].errors)
     }
