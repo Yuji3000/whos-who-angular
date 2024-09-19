@@ -6,6 +6,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 interface DifficultyMode {
   mode: string,
@@ -20,7 +21,7 @@ interface GameSettings {
 @Component({
   selector: 'app-settings-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule],
   templateUrl: './settings-form.component.html',
   styleUrl: './settings-form.component.css'
 })
@@ -60,18 +61,15 @@ export class SettingsFormComponent {
 
   onSubmit() {
     if (this.settingForm.valid) {
-      this.showSuccessMessage = false;
       const mode = this.settingForm.controls['mode'].value;
       const numberOfQuestions = this.settingForm.controls['numberOfQuestions'].value;
       this.settingsService.updateMode(mode);
       this.settingsService.updateNumberOfQuestions(numberOfQuestions);
       
+      this.showSuccessMessage = true;
       setTimeout(() => {
-        this.showSuccessMessage = true;
-        setTimeout(() => {
-          this.showSuccessMessage = false;
-          }, 2000)
-      }, 4000)
+        this.showSuccessMessage = false;
+      }, 2000);
 
     } else {
       console.log('Form is invalid. Please correct errors.');

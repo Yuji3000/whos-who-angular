@@ -176,7 +176,7 @@ export class GameService {
   // that need information for the current game
 
   get loadingProgress() {
-    // console.log(this._difficultyMode)
+    console.log(this._difficultyMode)
     return this._loadingProgress;
   }
 

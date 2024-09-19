@@ -1,9 +1,17 @@
 .error {
-  color: red;
+  color: var(--sys-error);
+  font-size: 0.875rem; 
+  text-align: center;
+  width: 100%;
+  padding-bottom: 5%;
 }
 
 .successMessage {
-  color: green;
+  color: var(--sys-primary-fixed);
+  font-size: 0.875rem; 
+  text-align: center;
+  width: 100%;
+  padding-bottom: 5%;
 }
 
 mat-card {
@@ -12,16 +20,10 @@ mat-card {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background-color: var(--sys-surface-container-lowest);
-  color: var(--sys-on-surface);
-  width: 40vw;
 }
 
-mat-form-field--filled{
-  background-color: var(--sys-surface-container-lowest);
-}
-
-.field {
-  color: white;
-  background-color: blue;
+mat-card-actions {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
 }
