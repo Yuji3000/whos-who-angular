@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import {CustomPlaylistService} from "../custom-playlist/custom-playlist.service";
 
 interface DifficultyMode {
   mode: string,
@@ -9,6 +10,7 @@ interface DifficultyMode {
 interface GameSettings {
   mode: DifficultyMode;
   numberOfQuestions: number;
+  customPlaylistSelected: boolean;
 }
 
 @Injectable({
@@ -18,7 +20,6 @@ interface GameSettings {
 export class SettingsService {
   private readonly settingsKey = 'gameSettings';
 
-  numberOfQuestions: number = 0;
   difficultyModes: DifficultyMode[] = [
     { mode: 'easy', winPercentage: 50 },
     { mode: 'medium', winPercentage: 70 },
@@ -27,7 +28,6 @@ export class SettingsService {
 
   private settingsSource = new BehaviorSubject<GameSettings>(this.getSettings());
   currentSettings = this.settingsSource.asObservable();
-  
 
   getSettings(): GameSettings {
     const storedSettings = localStorage.getItem(this.settingsKey);
@@ -39,6 +39,7 @@ export class SettingsService {
     return {
       mode: this.difficultyModes[1],
       numberOfQuestions: 10,
+      customPlaylistSelected: false
     };
   }
 
@@ -58,6 +59,10 @@ export class SettingsService {
 
   updateNumberOfQuestions(numberOfQuestions: number) {
     this.updateSettings({ numberOfQuestions });
+  }
+
+  setCustomPlaylist(customPlaylistSelected: boolean) {
+    this.updateSettings({ customPlaylistSelected })
   }
 
   saveSettings(settings: GameSettings) {

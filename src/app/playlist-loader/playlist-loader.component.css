@@ -1,0 +1,44 @@
+#custom-playlist-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--sys-surface-container-lowest);
+    border-radius: 1rem;
+
+    margin: 2rem 0;
+    padding: 2rem;
+    width: 40vw;
+}
+
+.custom-playlist-name {
+
+}
+
+#custom-playlist-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    gap: 1rem;
+}
+
+#playlist-url-box {
+    width: 100%;
+}
+
+.status-container {
+    width: 100%;
+
+    margin: 2rem 0;
+}
+
+.results-container {
+    width: 100%;
+
+    margin: 2rem 0;
+}

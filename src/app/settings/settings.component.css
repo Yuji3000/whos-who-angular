@@ -1,0 +1,8 @@
+#settings-form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+
+    gap: 2rem;
+}

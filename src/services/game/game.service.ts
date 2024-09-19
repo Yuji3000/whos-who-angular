@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {QuestionType} from "./types/question.type";
 import {ChoiceType} from "./types/choice.type";
 import {StandardGameEnum} from "./standard-game.enum";
 import {PlaylistService} from "../playlist/playlist.service";
 import {AnswerResponse} from "./types/answer-response.type";
+import {Playlist} from "../playlist/playlist.interface";
 import { SettingsService } from '../settings/settings.service';
+import {CustomPlaylistService} from "../custom-playlist/custom-playlist.service";
 
 interface DifficultyMode {
   mode: string,
@@ -21,6 +23,8 @@ interface GameSettings {
 })
 export class GameService {
 
+  private playlistService: Playlist;
+
   private readonly questionsToCache: number = 5;
 
   // Following properties should be loaded from settings service when that's ready
@@ -35,13 +39,13 @@ export class GameService {
   private _acknowledgeGameOver = false;
 
 
-  constructor(private playlistService: PlaylistService,
-    private settingsService: SettingsService
-  ) {
-      this.questionsRemaining = this._questionsPreferred;
-      this.settingsService.currentSettings.subscribe((settings: GameSettings) => {
-        this._questionsPreferred = settings.numberOfQuestions;
-        this._difficultyMode = this.mapDifficultyMode(settings.mode.mode);
+  constructor(private injector: Injector, private settingsService: SettingsService) {
+    this.playlistService = this.injector.get(PlaylistService);
+
+    this.questionsRemaining = this._questionsPreferred;
+    this.settingsService.currentSettings.subscribe((settings: GameSettings) => {
+      this._questionsPreferred = settings.numberOfQuestions;
+      this._difficultyMode = this.mapDifficultyMode(settings.mode.mode);
     });
   }
 
@@ -58,12 +62,21 @@ export class GameService {
     }
   }
 
+  private setPlaylistChoice() {
+    if (this.settingsService.getSettings().customPlaylistSelected) {
+      this.playlistService = this.injector.get(CustomPlaylistService);
+    } else {
+      this.playlistService = this.injector.get(PlaylistService);
+    }
+  }
 
   /**
    * Creates a game by reinitializing all game fields to their default state
    * and adding five questions to memory to help prevent loading times between questions
    */
   async createGame() {
+    this.setPlaylistChoice();
+
     this.questions = [];
     this._questionsAnsweredCorrectly = 0;
     this.questionsRemaining = 0;
@@ -176,7 +189,6 @@ export class GameService {
   // that need information for the current game
 
   get loadingProgress() {
-    console.log(this._difficultyMode)
     return this._loadingProgress;
   }
 

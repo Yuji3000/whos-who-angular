@@ -1,0 +1,54 @@
+<section id="custom-playlist-form-container">
+        <form id="custom-playlist-form" [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
+            <mat-form-field id="playlist-url-box">
+                <mat-label>Spotify Playlist Link</mat-label>
+                <input matInput required [placeholder]="placeholderUrl" formControlName="playlistLink" />
+                <mat-error>A valid Spotify playlist link is required</mat-error>
+            </mat-form-field>
+
+            <button mat-flat-button type="submit" [disabled]="playlistForm.invalid">
+                Load Playlist
+            </button>
+
+            @if (playlistLoaded) {
+                <p class="custom-playlist-name">Playlist currently loaded: {{ currentLoadedPlaylistName }}</p>
+            }
+
+        </form>
+
+    @if (playlistSubmitted) {
+        <div class="status-container">
+            <p>{{ playlistFoundText }}</p>
+
+            <mat-progress-bar
+                    [mode]="playlistFound ? 'determinate' : 'indeterminate'"
+                    [value]="playlistFound ? 100 : 0"
+            >
+            </mat-progress-bar>
+        </div>
+
+        <div class="status-container">
+            <p>{{ playlistLoadedText }}</p>
+
+            <mat-progress-bar mode="determinate" [value]="playlistLoadingProgress"></mat-progress-bar>
+        </div>
+
+        <div class="status-container">
+            <p>{{ playlistSavedText }}</p>
+
+            <mat-progress-bar mode="determinate" [value]="playlistSavingProgress"></mat-progress-bar>
+        </div>
+
+        @if (playlistSaved) {
+            <div class="results-container">
+                <p>{{ totalTracksText }}</p>
+                <p>{{ playlistTracksText }} ({{ playlistTracksNonExplicitText }})</p>
+                <p>{{ playlistTracksIgnoredText }}</p>
+            </div>
+        } @else if (playlistSubmissionFailed) {
+            <div class="results-container">
+                <p>{{ playlistSubmissionError }}</p>
+            </div>
+        }
+    }
+</section>

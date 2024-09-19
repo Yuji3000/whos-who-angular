@@ -5,14 +5,14 @@
     from multiple-choice options. Test your musical memory!!</p>
   <button mat-flat-button color="primary" routerLink="/play">Start Game!</button>
 </div>
-<div class="load-track">
-  <button [disabled]="loadTrackButtonDisabled" mat-flat-button (click)="loadTrack()">Load a track</button>
-  
-  @if (track) {
-    <div>
-      <p>{{ track.name }}</p>
-      <p>Explicit: {{ track.explicit }}</p>
-      <app-audio-player audioSrc="{{ track['preview_url']}}"></app-audio-player>
-    </div>
-  }
-  </div>
+<!--<div class="load-track">-->
+<!--  <button [disabled]="loadTrackButtonDisabled" mat-flat-button (click)="loadTrack()">Load a track</button>-->
+
+<!--  @if (track) {-->
+<!--    <div>-->
+<!--      <p>{{ track.name }}</p>-->
+<!--      <p>Explicit: {{ track.explicit }}</p>-->
+<!--      <app-audio-player audioSrc="{{ track['preview_url']}}"></app-audio-player>-->
+<!--    </div>-->
+<!--  }-->
+<!--  </div>-->
