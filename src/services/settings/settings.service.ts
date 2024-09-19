@@ -31,7 +31,7 @@ export class SettingsService {
 
   getSettings(): GameSettings {
     const storedSettings = localStorage.getItem(this.settingsKey);
-    console.log('(settings.service) Retrieved settings from localstorage:', storedSettings);
+    // console.log('(settings.service) Retrieved settings from localstorage:', storedSettings);
     return storedSettings ? JSON.parse(storedSettings) : this.getDefaultSettings();
   }
 

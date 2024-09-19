@@ -27,7 +27,7 @@ interface GameSettings {
 
 export class SettingsFormComponent {
   numberOfQuestions: number = 0
-
+  showSuccessMessage = false;
   difficultyModes: DifficultyMode[] = [
     { mode: 'easy', winPercentage: 50 },
     { mode: 'medium', winPercentage: 70 },
@@ -60,12 +60,18 @@ export class SettingsFormComponent {
 
   onSubmit() {
     if (this.settingForm.valid) {
+      this.showSuccessMessage = false;
       const mode = this.settingForm.controls['mode'].value;
       const numberOfQuestions = this.settingForm.controls['numberOfQuestions'].value;
       this.settingsService.updateMode(mode);
       this.settingsService.updateNumberOfQuestions(numberOfQuestions);
-
-      console.log('(Settings-form)Settings onSubmit() {mode, numberOfQuestions}', {mode, numberOfQuestions});
+      
+      setTimeout(() => {
+        this.showSuccessMessage = true;
+        setTimeout(() => {
+          this.showSuccessMessage = false;
+          }, 2000)
+      }, 4000)
 
     } else {
       console.log('Form is invalid. Please correct errors.');

@@ -4,6 +4,17 @@ import {ChoiceType} from "./types/choice.type";
 import {StandardGameEnum} from "./standard-game.enum";
 import {PlaylistService} from "../playlist/playlist.service";
 import {AnswerResponse} from "./types/answer-response.type";
+import { SettingsService } from '../settings/settings.service';
+
+interface DifficultyMode {
+  mode: string,
+  winPercentage: number
+}
+
+interface GameSettings {
+  mode: DifficultyMode;
+  numberOfQuestions: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +25,7 @@ export class GameService {
 
   // Following properties should be loaded from settings service when that's ready
   private _questionsPreferred: number = 5;
-  private difficultyMode: StandardGameEnum = StandardGameEnum.NORMAL;
+  private _difficultyMode: StandardGameEnum = StandardGameEnum.NORMAL;
 
   private questions: QuestionType[] = [];
   private _questionsAnsweredCorrectly: number = 0;
@@ -23,9 +34,30 @@ export class GameService {
   private _loadingProgress: number = 0;
   private _acknowledgeGameOver = false;
 
-  constructor(private playlistService: PlaylistService) {
-    this.questionsRemaining = this._questionsPreferred;
+
+  constructor(private playlistService: PlaylistService,
+    private settingsService: SettingsService
+  ) {
+      this.questionsRemaining = this._questionsPreferred;
+      this.settingsService.currentSettings.subscribe((settings: GameSettings) => {
+        this._questionsPreferred = settings.numberOfQuestions;
+        this._difficultyMode = this.mapDifficultyMode(settings.mode.mode);
+    });
   }
+
+  private mapDifficultyMode(mode: string): StandardGameEnum {
+    switch (mode) {
+      case 'easy':
+        return StandardGameEnum.EASY;
+      case 'medium':
+        return StandardGameEnum.NORMAL;
+      case 'hard':
+        return StandardGameEnum.HARD;
+      default:
+        return StandardGameEnum.NORMAL;
+    }
+  }
+
 
   /**
    * Creates a game by reinitializing all game fields to their default state
@@ -144,6 +176,7 @@ export class GameService {
   // that need information for the current game
 
   get loadingProgress() {
+    // console.log(this._difficultyMode)
     return this._loadingProgress;
   }
 
@@ -166,7 +199,7 @@ export class GameService {
   get playerWon() {
     const percentageCorrect = this._questionsAnsweredCorrectly / this._questionsPreferred;
 
-    return percentageCorrect >= this.difficultyMode;
+    return percentageCorrect >= this._difficultyMode;
   }
 
   get playerScore() {

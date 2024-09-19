@@ -30,6 +30,7 @@
       <mat-card-actions>
         <button mat-flat-button color="primary" type="submit" [disabled]="settingForm.invalid" [ngClass]="settingForm.invalid ? 'disabled' : ''">Update Settings</button>
       </mat-card-actions>
+     <div *ngIf="showSuccessMessage" class="successMessage">Settings Updated!</div>
     </form>
   </mat-card>
 
