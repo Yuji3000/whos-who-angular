@@ -1,1 +1,28 @@
-<p>leaderboard works!</p>
+<div id="leaderboard-container">
+    <h1>Leaderboards</h1>
+    <mat-tab-group>
+        <mat-tab label="Easy">
+            @if (easyLeaderboard.length > 0) {
+                <app-leaderboard-table [data]="easyLeaderboard"></app-leaderboard-table>
+            } @else {
+                <h2 class="empty-message">No leaderboard data available for this mode. Be the first!</h2>
+            }
+        </mat-tab>
+        <mat-tab label="Normal">
+            @if (normalLeaderboard.length > 0) {
+                <app-leaderboard-table [data]="normalLeaderboard"></app-leaderboard-table>
+            } @else {
+                <h2 class="empty-message">No leaderboard data available for this mode. Be the first!</h2>
+            }
+        </mat-tab>
+        <mat-tab label="Hard">
+            @if (hardLeaderboard.length > 0) {
+                <app-leaderboard-table [data]="hardLeaderboard"></app-leaderboard-table>
+            } @else {
+                <h2 class="empty-message">No leaderboard data available for this mode. Be the first!</h2>
+            }
+        </mat-tab>
+    </mat-tab-group>
+
+    <button mat-flat-button (click)="postScoreExample()">Post Example to Hard</button>
+</div>
