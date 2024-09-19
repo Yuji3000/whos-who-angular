@@ -1,0 +1,76 @@
+<section id="game-container">
+    @if (loading) {
+        <div id="loading-container">
+            <h1 id="loading-title">Loading game...</h1>
+            <mat-progress-bar id="progress-bar" mode="determinate" [value]="loadingProgress"></mat-progress-bar>
+        </div>
+    } @else {
+        @if (!gameOver || answered) {
+            <h1 id="game-container-header">{{ questionTitle }}</h1>
+            <div class="question-content-container">
+                <mat-card id="choices-card-container">
+                    <mat-card-header id="question-header">What's the name of this song?</mat-card-header>
+                    <mat-card-content>
+                        <form id="question-form" [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+                            <mat-radio-group class="choices-container" formControlName="choiceSelected">
+                                @for (choice of question?.choices; track choice.id) {
+                                    <mat-radio-button [ngClass]="choiceStyle(choice)" [value]="choice" class="choice">{{ choice.name }}</mat-radio-button>
+                                }
+                            </mat-radio-group>
+
+                            @if (!answered) {
+                                <button id="submit-answer" mat-flat-button type="submit" [disabled]="questionForm.invalid || answered">
+                                    Submit
+                                </button>
+                            } @else {
+                                <button id="next-question" mat-flat-button type="submit">
+                                    Next
+                                </button>
+                            }
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+
+                @if (question?.trackUrl) {
+                    <audio [src]="question?.trackUrl" controls autoplay>
+                        Your browser does not support the audio element.
+                    </audio>
+                }
+            </div>
+        } @else if (playerWon) {
+            <div class="question-content-container">
+                <div>
+                    <h1>You won!</h1>
+                    <h2>Difficulty: {{ difficultyName }}</h2>
+                    <h2>You answered {{ correctAnswerCount }} / {{ totalQuestionCount }} questions correctly</h2>
+                    <h2>Your score: {{ playerScore }}%</h2>
+                </div>
+                <div>
+                    <h2>Congrats! You made it to the top 100 in this category!</h2>
+                    <h2>Be immortalized in the leaderboards. Enter your name here</h2>
+                    <input />
+                </div>
+
+                <div>
+                    <h2>You didn't make it to the leaderboards this time. Try again?</h2>
+                </div>
+            </div>
+        } @else {
+            <div class="question-content-container">
+                <div>
+                    <h1>Aw shucks, you lost!</h1>
+                    <h2>Difficulty: {{ difficultyName }}</h2>
+
+                    <h2>You answered {{ correctAnswerCount }} / {{ totalQuestionCount }} questions correctly</h2>
+                    <h2>You need a score of at least {{ scoreToWinThreshold }}% to win</h2>
+                    <h2>Your score: {{ playerScore }}%</h2>
+                </div>
+                <div>
+                    <h2>You need to win to be eligible for the leaderboard. Try again?</h2>
+                </div>
+            </div>
+        }
+    }
+
+
+</section>

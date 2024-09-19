@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   loadTrack() {
     this.loadTrackButtonDisabled = true;
     this.playlist.getRandomTrackFromPlaylist()
-        .then(track => this.track = track)
+        .then(trackWithMeta => this.track = trackWithMeta.track)
         .catch(err => console.log(err))
         .finally(() => this.loadTrackButtonDisabled = false);
   }
