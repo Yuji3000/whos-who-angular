@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 import { AudioPlayerService } from 'src/services/audio-player.service';
 import { MatIcon } from "@angular/material/icon";
 import { CommonModule } from '@angular/common';
@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './audio-player.component.html',
   styleUrl: './audio-player.component.css'
 })
-export class AudioPlayerComponent {
+export class AudioPlayerComponent implements OnDestroy {
 
   @Input()
   set audioSrc(newSrc: string) {
@@ -21,15 +21,9 @@ export class AudioPlayerComponent {
     this.playAudio();
   }
 
-  songPlaying: boolean = false;
+  songPlaying: boolean = true;
 
   constructor(private audioPlayerService: AudioPlayerService) {}
-
-  ngOnInit() {
-    if (this.audioSrc) {
-      this.audioPlayerService.loadAudio(this.audioSrc);
-    }
-  }
   
   playAudio() {
     this.audioPlayerService.play().then(() => {
@@ -45,5 +39,9 @@ export class AudioPlayerComponent {
   stopAudio() {
     this.audioPlayerService.stop();
     this.songPlaying = false
+  }
+
+  ngOnDestroy(): void {
+    this.stopAudio();
   }
 }

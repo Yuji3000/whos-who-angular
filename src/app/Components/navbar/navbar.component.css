@@ -1,3 +1,7 @@
+.toolbar {
+  background-color: var(--sys-surface-container);
+}
+
 .nav-link {
   color: white;
 }

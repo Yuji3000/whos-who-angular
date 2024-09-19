@@ -1,0 +1,26 @@
+#game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+
+    margin-top: 8rem;
+    padding: 1rem;
+}
+
+#loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#loading-title {
+    font-size: var(--sys-headline-large-size);
+    text-align: center;
+}
+
+#progress-bar {
+    width: 80vw;
+}

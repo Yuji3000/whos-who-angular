@@ -8,7 +8,12 @@
 @import 'material-symbols';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--sys-surface);
+  color: var(--sys-on-surface);
+}
 
 html {
   // Apply the light theme by default for all components (includes core theme)

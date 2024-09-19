@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import {ApiTokenService} from "../api-token/api-token.service";
 import fetchFromSpotify from "../api";
 
+export type TrackWithMeta = {
+  track: Track,
+  index: number
+}
+
 export type Track = {
   explicit: boolean,
   name: string,
@@ -87,7 +92,7 @@ export class PlaylistService {
     return validIndices[randomIndex];
   }
 
-  public async getRandomTrackFromPlaylist(ignoreIndices?: Set<number>): Promise<Track> {
+  public async getRandomTrackFromPlaylist(ignoreIndices?: Set<number>): Promise<TrackWithMeta> {
     const token = await this.tokenService.token;
 
     const totalTracks = await this.getTotalTracks(token.value);
@@ -98,6 +103,9 @@ export class PlaylistService {
       token: token.value,
       endpoint: this.createPlaylistTrackEndpoint(),
       params: this.queryParamsWithOffset(randomIndex)
-    }).then((response: PlaylistTrackResponse) => response.items[0].track)
+    }).then((response: PlaylistTrackResponse) => ({
+      track: response.items[0].track,
+      index: randomIndex
+    }))
   }
 }
