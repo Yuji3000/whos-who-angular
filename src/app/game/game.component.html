@@ -1,0 +1,13 @@
+<section id="game-container">
+    @if (loading) {
+        <div id="loading-container">
+            <h1 id="loading-title">Loading game...</h1>
+            <mat-progress-bar id="progress-bar" mode="determinate" [value]="loadingProgress"></mat-progress-bar>
+        </div>
+    } @else if (!gameOverAcknowledged) {
+        <app-question></app-question>
+    } @else {
+        <app-results></app-results>
+        <p>Show leaderboard component here which will prompt the user to enter their name if eligible</p>
+    }
+</section>
