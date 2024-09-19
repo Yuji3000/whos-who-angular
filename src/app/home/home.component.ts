@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { MatIcon} from "@angular/material/icon";
 import { PlaylistService, Track } from "../../services/playlist/playlist.service";
@@ -35,12 +34,4 @@ export class HomeComponent implements OnInit {
 
   track: Track | undefined;
   loadTrackButtonDisabled = false;
-
-  loadTrack() {
-    this.loadTrackButtonDisabled = true;
-    this.playlist.getRandomTrackFromPlaylist()
-        .then(trackWithMeta => this.track = trackWithMeta.track)
-        .catch(err => console.log(err))
-        .finally(() => this.loadTrackButtonDisabled = false);
-  }
 }

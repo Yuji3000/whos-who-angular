@@ -15,11 +15,6 @@ interface DifficultyMode {
   winPercentage: number
 }
 
-interface GameSettings {
-  mode: DifficultyMode;
-  numberOfQuestions: number;
-}
-
 @Component({
   selector: 'app-settings-form',
   standalone: true,

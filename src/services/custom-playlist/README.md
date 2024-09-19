@@ -1,12 +1,12 @@
 
-- [ ] Get all of a user's songs in memory
-- [ ] Filter out songs without previews or that have null tracks (yes, it's possible to get null tracks from the API)
-- [ ] Creates a second list containing only non-explicit songs
-- [ ] Check the total number of songs with previews and:
+- [x] Get all of a user's songs in memory
+- [x] Filter out songs without previews or that have null tracks (yes, it's possible to get null tracks from the API)
+- [x] Creates a second list containing only non-explicit songs
+- [] Check the total number of songs with previews and:
   - [ ] If the total number of songs is less than 5, fail
   - [ ] If the total number of songs is >= 5 but less than 30, limit the max number of questions that can be asked
   - [ ] Otherwise, continue
   - [ ] Repeat for second list containing only non-explicit songs
-- [ ] Save the filtered songs to local storage. Record the time the songs were saved and what songs were not saved
+- [x] Save the filtered songs to local storage. Record the time the songs were saved and what songs were not saved
 - [ ] Allow users to update their saved songs (get from local storage as a set to speed up updating)
-- [ ] When creating a game, randomly pick songs from the saved playlist
+- [x] When creating a game, randomly pick songs from the saved playlist
