@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { SettingsFormComponent } from './settings-form/settings-form.component';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [],
+  imports: [SettingsFormComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
