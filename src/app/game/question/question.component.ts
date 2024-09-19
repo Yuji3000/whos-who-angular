@@ -8,6 +8,7 @@ import {ChoiceType} from "../../../services/game/types/choice.type";
 import {GameService} from "../../../services/game/game.service";
 import {AnswerResponse} from "../../../services/game/types/answer-response.type";
 import {NgClass} from "@angular/common";
+import {AudioPlayerComponent} from "../../audio-player/audio-player.component";
 
 @Component({
   selector: 'app-question',
@@ -20,7 +21,8 @@ import {NgClass} from "@angular/common";
     MatRadioButton,
     MatRadioGroup,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    AudioPlayerComponent
   ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.css'

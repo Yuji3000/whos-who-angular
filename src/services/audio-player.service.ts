@@ -19,13 +19,14 @@ export class AudioPlayerService {
     this.sound = new Howl({
       src: [audioSrc],
       format: ['mp3'], 
-      autoplay: false,
+      autoplay: true,
+      loop: true,
       onloaderror: (error) => {
         console.error('Error loading audio:', error);
       },
       onplay: () => {
         this.currentSeek = this.sound?.seek() || 0; 
-      }
+      },
     });
   }
 

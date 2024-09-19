@@ -24,8 +24,6 @@
     </mat-card>
 
     @if (question?.trackUrl) {
-        <audio [src]="question?.trackUrl" controls autoplay>
-            Your browser does not support the audio element.
-        </audio>
+        <app-audio-player [audioSrc]="question!.trackUrl"></app-audio-player>
     }
 </div>
