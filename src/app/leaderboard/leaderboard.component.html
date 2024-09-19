@@ -1,1 +1,15 @@
-<p>leaderboard works!</p>
+<div id="leaderboard-container">
+    <h1>Leaderboards</h1>
+    <mat-tab-group>
+        <mat-tab label="Easy">
+            <app-leaderboard-table [data]="getLeaderboardItems('LEADERBOARDS_EASY')"></app-leaderboard-table>
+        </mat-tab>
+        <mat-tab label="Medium">
+            <app-leaderboard-table [data]="getLeaderboardItems('LEADERBOARDS_MEDIUM')"></app-leaderboard-table>
+        </mat-tab>
+        <mat-tab label="Hard">
+            <app-leaderboard-table [data]="getLeaderboardItems('LEADERBOARDS_HARD')"></app-leaderboard-table>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

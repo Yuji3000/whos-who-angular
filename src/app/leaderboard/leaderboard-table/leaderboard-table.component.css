@@ -1,0 +1,11 @@
+.app-table {
+  background-color: var(--sys-surface-container-lowest);
+}
+
+.full-width-table {
+  width: 100%;
+  padding: 1rem;
+
+  min-width: 80vw;
+  background-color: var(--sys-surface-container-lowest);
+}
