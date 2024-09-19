@@ -176,7 +176,6 @@ export class GameService {
   // that need information for the current game
 
   get loadingProgress() {
-    console.log(this._difficultyMode)
     return this._loadingProgress;
   }
 
@@ -214,5 +213,9 @@ export class GameService {
 
   get acknowledgeGameOver() {
     return this._acknowledgeGameOver;
+  }
+
+  get currentDifficulty(): StandardGameEnum {
+    return this._difficultyMode
   }
 }

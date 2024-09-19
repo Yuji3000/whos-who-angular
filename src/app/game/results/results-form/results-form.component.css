@@ -1,0 +1,29 @@
+.error {
+  color: var(--sys-error);
+  font-size: 0.875rem; 
+  text-align: center;
+  width: 100%;
+  padding-bottom: 5%;
+}
+
+.successMessage {
+  color: var(--sys-primary-fixed);
+  font-size: 0.875rem; 
+  text-align: center;
+  width: 100%;
+  padding-bottom: 5%;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
