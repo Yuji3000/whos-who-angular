@@ -20,6 +20,7 @@ export class AudioPlayerService {
       format: ['mp3'], 
       autoplay: true,
       loop: true,
+      volume: 0.5,
       onloaderror: (error) => {
         console.error('Error loading audio:', error);
       },
