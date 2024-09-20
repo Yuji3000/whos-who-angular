@@ -5,7 +5,7 @@ import {StandardGameEnum, StandardGameStringEnum} from "./standard-game.enum";
 import {PlaylistService} from "../playlist/playlist.service";
 import {AnswerResponse} from "./types/answer-response.type";
 import {Playlist} from "../playlist/playlist.interface";
-import { SettingsService } from '../settings/settings.service';
+import {SettingsService} from '../settings/settings.service';
 import {CustomPlaylistService} from "../custom-playlist/custom-playlist.service";
 
 interface DifficultyMode {
@@ -30,7 +30,7 @@ export class GameService {
   // Following properties should be loaded from settings service when that's ready
   private _questionsPreferred: number = 5;
   private _difficultyMode: StandardGameEnum = StandardGameEnum.NORMAL;
-  private _difficultyModeString: string = ''
+  private _difficultyModeString: StandardGameStringEnum = StandardGameStringEnum.NORMAL;
   private questions: QuestionType[] = [];
   private _questionsAnsweredCorrectly: number = 0;
   private questionsRemaining: number = 0;
@@ -232,5 +232,9 @@ export class GameService {
 
   get currentDifficulty(): StandardGameEnum {
     return this._difficultyMode
+  }
+
+  get currentDifficultyString(): StandardGameStringEnum {
+    return this._difficultyModeString;
   }
 }
