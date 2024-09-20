@@ -23,9 +23,16 @@
   - ![Angular.js](https://img.shields.io/badge/angular.js-%23E23237.svg?style=for-the-badge&logo=angularjs&logoColor=white)
   - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
   - ![AngularMaterial](https://img.shields.io/badge/%20-Angular%20Material-red?style=for-the-badge&logo=angular)
-  - [<img src="src/assets/howler-js.png" alt="howler logo" width="140" height="auto">](https://github.com/goldfire/howler.js/tree/master)
+  - [<img src="src/assets/readme-images/howler-js.png" alt="howler logo" width="140" height="auto">](https://github.com/goldfire/howler.js/tree/master)
  
 
+# App Flow
+<img src="src/assets/readme-images/home-page.png" alt="homepage" width="60%" height="auto">
+<img src="src/assets/readme-images/question-correct.png" alt="question correct" width="40%" height="auto">
+<img src="src/assets/readme-images/question-wrong.png" alt="question-wrong" width="40%" height="auto">
+<img src="src/assets/readme-images/results.png" alt="results" width="70%" height="auto">
+<img src="src/assets/readme-images/leaderboard.png" alt="leaderboard" width="70%" height="auto">
+<img src="src/assets/readme-images/settings.png" alt="settings" width="70%" height="auto">
 
 
 
@@ -33,8 +40,7 @@
 
   # Contributors
 
-  ## Developers
-  <table align="center" style="width: 80%; text-align: center;">
+  <table  text-align: center;">
     <tr>
       <td ><img src="https://avatars.githubusercontent.com/u/88041024?v=4" width=auto height=110px></td>
       <td><img src="https://avatars.githubusercontent.com/u/108035840?v=4" width=auto height=110px></td>
