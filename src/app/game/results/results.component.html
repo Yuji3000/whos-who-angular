@@ -1,1 +1,8 @@
-<h1>{{ gameResultText }}</h1>
+<div class="results-container">
+  <h1>{{ gameResultText}}</h1>
+  <h2>{{playerScore}}% Correct</h2>
+  <h2>Mode: {{ currentDifficulty | titlecase}}</h2>
+    @if(resultBoolean) {
+      <app-results-form (playerNameChange)="onPlayerNameChange($event)"></app-results-form>
+    }
+</div>

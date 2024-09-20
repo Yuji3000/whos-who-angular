@@ -1,0 +1,24 @@
+<mat-card>
+  <form [formGroup]="nameForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label for="name">Enter Your Name</mat-label>
+        <input matInput maxlength="15" minLength="3" id="name" type="text" name="name" class="input-style" formControlName="name"/>
+      </mat-form-field>
+    </mat-card-content>
+    
+    <div>
+      <ng-container *ngIf="nameForm.controls['name'].touched && nameForm.controls['name'].errors">
+        <div *ngIf="nameForm.controls['name'].errors['required']" class="error">Required</div>
+      </ng-container>
+    </div>
+
+      <mat-card-actions>
+        <button mat-flat-button [disabled]="buttonDisabled">Add Your Name</button>
+      </mat-card-actions>
+      <div *ngIf="showSuccessMessage" class="successMessage">Name Added!</div>
+    </form>
+  </mat-card>
+
+    
+

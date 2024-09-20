@@ -8,6 +8,7 @@ import {NgClass} from "@angular/common";
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {QuestionComponent} from "./question/question.component";
 import {ResultsComponent} from "./results/results.component";
+import { LeaderboardComponent } from "../leaderboard/leaderboard.component";
 
 @Component({
   selector: 'app-game',
@@ -24,13 +25,14 @@ import {ResultsComponent} from "./results/results.component";
     NgClass,
     MatProgressBar,
     QuestionComponent,
-    ResultsComponent
-  ],
+    ResultsComponent,
+    LeaderboardComponent
+],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
 export class GameComponent {
-
+  playerName: string = ''
   loading = true;
 
   constructor(private gameService: GameService) {
@@ -48,5 +50,9 @@ export class GameComponent {
 
   get playerWon() {
     return this.gameService.playerWon;
+  }
+
+  onPlayerNameChange(name: string) {
+    this.playerName = name
   }
 }

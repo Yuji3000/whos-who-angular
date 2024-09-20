@@ -8,27 +8,31 @@ import { SettingsComponent } from "../settings/settings.component";
 import { RouterOutlet } from "@angular/router";
 import { RouterLink } from "@angular/router";
 import { AudioPlayerComponent } from "../audio-player/audio-player.component";
+import { ResultsFormComponent } from "../game/results/results-form/results-form.component";
+import { ResultsComponent } from "../game/results/results.component";
 
 @Component({
     selector: "app-home",
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.css"],
     standalone: true,
-    imports: [
-      CommonModule,
-      FormsModule,
-      MatIcon,
-      MatAnchor,
-      MatButton,
-      SettingsComponent,
-      RouterLink,
-      RouterOutlet,
-      AudioPlayerComponent,
-    ],
+  imports: [
+    FormsModule,
+    MatIcon,
+    MatButton,
+    MatAnchor,
+    MatIcon,
+    SettingsComponent,
+    RouterLink,
+    RouterOutlet,
+    AudioPlayerComponent,
+    ResultsFormComponent,
+    ResultsComponent
+],
 })
 export class HomeComponent implements OnInit {
   constructor(private playlist: PlaylistService) {}
-
+  
   ngOnInit(): void {}
 
   track: Track | undefined;
