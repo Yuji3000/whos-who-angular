@@ -50,16 +50,14 @@ export class GameService {
     });
   }
 
-  private mapDifficultyMode(mode: string): StandardGameEnum {
+  private mapDifficultyMode(mode: StandardGameStringEnum): StandardGameEnum {
     switch (mode) {
-      case 'easy':
+      case StandardGameStringEnum.EASY:
         return StandardGameEnum.EASY;
-      case 'medium':
+      case StandardGameStringEnum.NORMAL:
         return StandardGameEnum.NORMAL;
-      case 'hard':
+      case StandardGameStringEnum.HARD:
         return StandardGameEnum.HARD;
-      default:
-        return StandardGameEnum.NORMAL;
     }
   }
 
