@@ -82,6 +82,7 @@ export class GameService {
     this.questionsRemaining = 0;
     this.songIndicesToIgnore.clear();
     this._loadingProgress = 0;
+    this._acknowledgeGameOver = false;
 
     for (let i = 0; i < this.questionsToCache; i++) {
       this.questionsRemaining = this._questionsPreferred;
