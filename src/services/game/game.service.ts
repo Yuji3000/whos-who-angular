@@ -30,7 +30,7 @@ export class GameService {
   // Following properties should be loaded from settings service when that's ready
   private _questionsPreferred: number = 5;
   private _difficultyMode: StandardGameEnum = StandardGameEnum.NORMAL;
-  private _stringDifficutlyMode: string = ''
+  private _difficultyModeString: string = ''
   private questions: QuestionType[] = [];
   private _questionsAnsweredCorrectly: number = 0;
   private questionsRemaining: number = 0;
@@ -46,7 +46,7 @@ export class GameService {
     this.settingsService.currentSettings.subscribe((settings: GameSettings) => {
       this._questionsPreferred = settings.numberOfQuestions;
       this._difficultyMode = this.mapDifficultyMode(settings.mode.mode);
-      this._stringDifficutlyMode = settings.mode.mode;
+      this._difficultyModeString = settings.mode.mode;
     });
   }
 
