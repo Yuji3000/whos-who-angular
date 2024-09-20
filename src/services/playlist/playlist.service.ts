@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ApiTokenService} from "../api-token/api-token.service";
 import fetchFromSpotify from "../api";
+import {Playlist} from "./playlist.interface";
 
 export type TrackWithMeta = {
   track: Track,
@@ -14,11 +15,11 @@ export type Track = {
   id: string
 }
 
-type TrackItem = {
+export type TrackItem = {
   track: Track;
 }
 
-type PlaylistTrackResponse = {
+export type PlaylistTrackResponse = {
   items: TrackItem[],
   next: string,
   total: number
@@ -27,7 +28,7 @@ type PlaylistTrackResponse = {
 @Injectable({
   providedIn: 'root'
 })
-export class PlaylistService {
+export class PlaylistService implements Playlist {
 
   private readonly playlistId = '0LsqrdTvD8RmhccowvjoKz'
   private readonly cleanPlaylistId = '4raGEGV7j9SgrAqlXS43uO'
