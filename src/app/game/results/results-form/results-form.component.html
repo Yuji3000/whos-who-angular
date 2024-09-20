@@ -14,7 +14,7 @@
     </div>
 
       <mat-card-actions>
-        <button mat-flat-button >Add Your Name</button>
+        <button mat-flat-button [disabled]="buttonDisabled">Add Your Name</button>
       </mat-card-actions>
       <div *ngIf="showSuccessMessage" class="successMessage">Name Added!</div>
     </form>

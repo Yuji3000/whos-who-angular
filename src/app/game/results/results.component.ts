@@ -5,11 +5,7 @@ import { StandardGameEnum, StandardGameStringEnum } from 'src/services/game/stan
 import { ResultsFormComponent } from "./results-form/results-form.component";
 import { TitleCasePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
-export type Entry = {
-  name: string,
-  score: number,
-  questionsAnswered: number,
-}
+import { Entry } from 'src/services/leaderboard/leaderboard.service';
 
 @Component({
   selector: 'app-results',
@@ -20,7 +16,7 @@ export type Entry = {
 })
 export class ResultsComponent {
   playerName: string = ''; 
-  currentDifficulty: StandardGameStringEnum = StandardGameStringEnum.NORMAL;
+  currentDifficulty: StandardGameStringEnum | undefined = undefined;
   resultBoolean: boolean = false;
 
   constructor(private gameService: GameService, private leaderboardService: LeaderboardService) {}
@@ -63,7 +59,6 @@ export class ResultsComponent {
       questionsAnswered: this.questionsAnswered
     }
     const difficulty = this.convertToStringEnum(this.gameService.currentDifficulty)
-    this.currentDifficulty = difficulty
     this.leaderboardService.postScoreToLeaderboard(entry, difficulty)
   }
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { StandardGameStringEnum } from '../game/standard-game.enum';
 
 interface DifficultyMode {
-  mode: string,
+  mode: StandardGameStringEnum,
   winPercentage: number
 }
 
@@ -20,9 +21,9 @@ export class SettingsService {
 
   numberOfQuestions: number = 0;
   difficultyModes: DifficultyMode[] = [
-    { mode: 'easy', winPercentage: 50 },
-    { mode: 'medium', winPercentage: 70 },
-    { mode: 'hard', winPercentage: 90 }
+    { mode: StandardGameStringEnum.EASY, winPercentage: 50 },
+    { mode: StandardGameStringEnum.NORMAL, winPercentage: 70 },
+    { mode: StandardGameStringEnum.HARD, winPercentage: 90 }
   ];
 
   private settingsSource = new BehaviorSubject<GameSettings>(this.getSettings());

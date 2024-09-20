@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ResultsFormComponent {
   showSuccessMessage = false
+  buttonDisabled = false
   @Output() playerNameChange = new EventEmitter<string>();
 
   nameForm: FormGroup = new FormGroup({
@@ -29,15 +30,15 @@ export class ResultsFormComponent {
 
   onSubmit() {
     if (this.nameForm.valid) {
-      const name = this.nameForm.value.name;
-      this.playerNameChange.emit(name);
+      const name = this.nameForm.value.name
+      this.playerNameChange.emit(name)
 
-      this.showSuccessMessage = true;
+      this.showSuccessMessage = true
+      this.buttonDisabled = true
       setTimeout(() => {
-        this.showSuccessMessage = false;
+        this.showSuccessMessage = false
       }, 2000);
       
-      this.nameForm.reset();
     } else {
       console.log("Name Form Error", this.nameForm.controls['name'].errors)
     }
