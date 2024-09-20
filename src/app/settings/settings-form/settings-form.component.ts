@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {PlaylistLoaderComponent} from "../../playlist-loader/playlist-loader.component";
 import {MatButtonToggle, MatButtonToggleGroup} from "@angular/material/button-toggle";
+import {MatCheckbox} from "@angular/material/checkbox";
 
 interface DifficultyMode {
   mode: string,
@@ -18,7 +19,7 @@ interface DifficultyMode {
 @Component({
   selector: 'app-settings-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, PlaylistLoaderComponent, MatButtonToggleGroup, MatButtonToggle],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, PlaylistLoaderComponent, MatButtonToggleGroup, MatButtonToggle, MatCheckbox],
   templateUrl: './settings-form.component.html',
   styleUrl: './settings-form.component.css'
 })
@@ -39,6 +40,7 @@ export class SettingsFormComponent implements OnInit {
     ]),
     mode: new FormControl(undefined, [Validators.required]),
     playlistChoice: new FormControl('', [Validators.required]),
+    allowExplicit: new FormControl('', [Validators.required])
   })
 
   constructor(private settingsService: SettingsService) {}
@@ -50,7 +52,8 @@ export class SettingsFormComponent implements OnInit {
         this.settingForm.patchValue({
           numberOfQuestions: settings.numberOfQuestions,
           mode: settings.mode.mode,
-          playlistChoice: settings.customPlaylistSelected ? 'custom' : 'default'
+          playlistChoice: settings.customPlaylistSelected ? 'custom' : 'default',
+          allowExplicit: settings.allowExplicit,
         });
         this.difficultyModes = this.settingsService.difficultyModes;
 
@@ -68,9 +71,11 @@ export class SettingsFormComponent implements OnInit {
       const mode = this.settingForm.controls['mode'].value;
       const numberOfQuestions = this.settingForm.controls['numberOfQuestions'].value;
       const playlistSelected = this.settingForm.controls['playlistChoice'].value;
+      const allowExplicit = this.settingForm.controls['allowExplicit'].value;
       this.settingsService.updateMode(mode);
       this.settingsService.updateNumberOfQuestions(numberOfQuestions);
       this.settingsService.setCustomPlaylist(playlistSelected === 'custom')
+      this.settingsService.setExplicitPreference(allowExplicit);
 
       this.showSuccessMessage = true;
       setTimeout(() => {

@@ -32,6 +32,7 @@ export class PlaylistService implements Playlist {
 
   private readonly playlistId = '0LsqrdTvD8RmhccowvjoKz'
   private readonly cleanPlaylistId = '4raGEGV7j9SgrAqlXS43uO'
+  private _allowExplicit = false;
 
   private readonly queryParams = {
     limit: 1,
@@ -41,8 +42,8 @@ export class PlaylistService implements Playlist {
 
   constructor(private tokenService: ApiTokenService) { }
 
-  private createPlaylistTrackEndpoint(allowExplicit = false) {
-    const id = allowExplicit ? this.playlistId : this.cleanPlaylistId;
+  private createPlaylistTrackEndpoint() {
+    const id = this._allowExplicit ? this.playlistId : this.cleanPlaylistId;
 
     return `playlists/${id}/tracks`
   }
@@ -108,5 +109,9 @@ export class PlaylistService implements Playlist {
       track: response.items[0].track,
       index: randomIndex
     }))
+  }
+
+  set allowExplicit(allow: boolean) {
+    this._allowExplicit = allow;
   }
 }

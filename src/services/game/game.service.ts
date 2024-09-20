@@ -67,6 +67,8 @@ export class GameService {
     } else {
       this.playlistService = this.injector.get(PlaylistService);
     }
+
+    this.playlistService.allowExplicit = this.settingsService.getSettings().allowExplicit;
   }
 
   /**

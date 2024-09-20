@@ -40,6 +40,7 @@ export class CustomPlaylistService implements Playlist {
   // Defaults to our clean playlist id
   private _playlistId: string = '4raGEGV7j9SgrAqlXS43uO';
   private _playlistResponse: Partial<PlaylistResponse> = {};
+  private _allowExplicit = false;
 
   private _playlistFound = false;
 
@@ -274,11 +275,16 @@ export class CustomPlaylistService implements Playlist {
   }
 
   public async getRandomTrackFromPlaylist(ignoreIndices?: Set<number>): Promise<TrackWithMeta> {
-    const randomIndex = this.generateRandomIndex(this.tracks.length, ignoreIndices);
+    const length = this._allowExplicit ? this.tracks.length : this.tracksNotExplicit.length;
+    const randomIndex = this.generateRandomIndex(length, ignoreIndices);
 
     return {
-      track: this.tracks[randomIndex],
+      track: this._allowExplicit ? this.tracks[randomIndex] : this.tracksNotExplicit[randomIndex],
       index: randomIndex
     }
+  }
+
+  set allowExplicit(allow: boolean) {
+    this._allowExplicit = allow;
   }
 }
