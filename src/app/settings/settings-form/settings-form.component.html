@@ -34,6 +34,8 @@
           <mat-button-toggle value="custom">Your Playlist</mat-button-toggle>
       </mat-button-toggle-group>
 
+      <mat-checkbox formControlName="allowExplicit">Allow Explicit</mat-checkbox>
+
       <mat-card-actions>
         <button mat-flat-button color="primary" type="submit" [disabled]="settingForm.invalid" [ngClass]="settingForm.invalid ? 'disabled' : ''">Update Settings</button>
       </mat-card-actions>

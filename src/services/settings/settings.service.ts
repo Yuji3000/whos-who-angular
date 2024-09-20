@@ -11,6 +11,7 @@ interface GameSettings {
   mode: DifficultyMode;
   numberOfQuestions: number;
   customPlaylistSelected: boolean;
+  allowExplicit: boolean;
 }
 
 @Injectable({
@@ -39,7 +40,8 @@ export class SettingsService {
     return {
       mode: this.difficultyModes[1],
       numberOfQuestions: 10,
-      customPlaylistSelected: false
+      customPlaylistSelected: false,
+      allowExplicit: false
     };
   }
 
@@ -63,6 +65,10 @@ export class SettingsService {
 
   setCustomPlaylist(customPlaylistSelected: boolean) {
     this.updateSettings({ customPlaylistSelected })
+  }
+
+  setExplicitPreference(allowExplicit: boolean) {
+    this.updateSettings( { allowExplicit });
   }
 
   saveSettings(settings: GameSettings) {
