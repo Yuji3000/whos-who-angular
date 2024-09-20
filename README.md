@@ -1,21 +1,35 @@
 
 
-[Original Project Outline](OUTLINE.md)
 
 <h1 align="center">Who's Who</h1>
-<div align="center"><img src="app/assets/images/homepage11.png" alt="Homepage large" class="center" width="600" height="auto"></div>
+<div align="center"><img src="src/assets/readme-images/home-page.png" alt="Homepage large" class="center" width="600" height="auto"></div>
 
+# Table of Contents
+- [Screen Shots](#app-examples)
+- [Tech & Tools Used](#tech-and-tools)
+- [Contributors](#contributors)
 
+## About
+Who's who is a song guessing game for everyone! A user can hear a song clip and guess from a multiple choice selection. 
 
+This project was created during [Cook Systems](https://cooksys.com/) <a href="https://www.allaboutfasttrack.com/" style="color: green;">Fast Track</a> Program. You can view the original documentation for the project requirements [here](OUTLINE.md).
 
-*** Tea Time was previously deployed via Render and was taken down on Feb 27, 2024 ***
+### Features
+- Use a standard or custom Spotify playlist!
+- Choice of non-explict or explict song option
+- Choice of the amount of questions in a game
+- Difficulty modes
+- Leaderboards are paginated and organized by mode
 
 <br>
 
-# Table of Contents
-- [Flow of Application](#app-flow)
-- [Tech & Tools Used](#tech-and-tools)
-- [Contributors](#contributors)
+# App Examples
+<div align="center"><img src="src/assets/readme-images/home-page.png" alt="homepage" width="60%" height="auto"></div> <br>
+<div align="center"><img src="src/assets/readme-images/question-correct.png" alt="question correct" width="40%" height="auto"> 
+<img src="src/assets/readme-images/question-wrong.png" alt="question-wrong" width="41%" height="auto"></div> <br>
+<div align="center"><img src="src/assets/readme-images/results.png" alt="results" width="70%" height="auto"></div> <br>
+<div align="center"><img src="src/assets/readme-images/settings.png" alt="settings" width="70%" height="auto"></div> <br>
+<div align="center"><img src="src/assets/readme-images/leaderboard.png" alt="leaderboard" width="70%" height="auto"></div> <br>
 
 # Tech and Tools
 
@@ -23,16 +37,8 @@
   - ![Angular.js](https://img.shields.io/badge/angular.js-%23E23237.svg?style=for-the-badge&logo=angularjs&logoColor=white)
   - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
   - ![AngularMaterial](https://img.shields.io/badge/%20-Angular%20Material-red?style=for-the-badge&logo=angular)
-  - [<img src="src/assets/readme-images/howler-js.png" alt="howler logo" width="140" height="auto">](https://github.com/goldfire/howler.js/tree/master)
- 
-
-# App Flow
-<img src="src/assets/readme-images/home-page.png" alt="homepage" width="60%" height="auto">
-<img src="src/assets/readme-images/question-correct.png" alt="question correct" width="40%" height="auto">
-<img src="src/assets/readme-images/question-wrong.png" alt="question-wrong" width="40%" height="auto">
-<img src="src/assets/readme-images/results.png" alt="results" width="70%" height="auto">
-<img src="src/assets/readme-images/leaderboard.png" alt="leaderboard" width="70%" height="auto">
-<img src="src/assets/readme-images/settings.png" alt="settings" width="70%" height="auto">
+ - ![Spotify](https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white)
+  - [<img src="src/assets/readme-images/howler-js.png" alt="howler logo" width="130" height="auto">](https://github.com/goldfire/howler.js/tree/master)
 
 
 
