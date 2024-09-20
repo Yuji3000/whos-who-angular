@@ -7,6 +7,10 @@
   width: 40vw;
   margin: 25vh auto 0;
 
+  background-color: var(--sys-surface-container-lowest);
+  padding: 2rem;
+  border-radius: 1rem;
+
   gap: 1rem;
 }
 
