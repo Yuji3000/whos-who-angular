@@ -5,7 +5,7 @@ import {StandardGameEnum, StandardGameStringEnum} from "./standard-game.enum";
 import {PlaylistService} from "../playlist/playlist.service";
 import {AnswerResponse} from "./types/answer-response.type";
 import {Playlist} from "../playlist/playlist.interface";
-import { SettingsService } from '../settings/settings.service';
+import {SettingsService} from '../settings/settings.service';
 import {CustomPlaylistService} from "../custom-playlist/custom-playlist.service";
 
 interface DifficultyMode {
@@ -30,7 +30,7 @@ export class GameService {
   // Following properties should be loaded from settings service when that's ready
   private _questionsPreferred: number = 5;
   private _difficultyMode: StandardGameEnum = StandardGameEnum.NORMAL;
-  private _difficultyModeString: string = ''
+  private _difficultyModeString: StandardGameStringEnum = StandardGameStringEnum.NORMAL;
   private questions: QuestionType[] = [];
   private _questionsAnsweredCorrectly: number = 0;
   private questionsRemaining: number = 0;
@@ -50,16 +50,14 @@ export class GameService {
     });
   }
 
-  private mapDifficultyMode(mode: string): StandardGameEnum {
+  private mapDifficultyMode(mode: StandardGameStringEnum): StandardGameEnum {
     switch (mode) {
-      case 'easy':
+      case StandardGameStringEnum.EASY:
         return StandardGameEnum.EASY;
-      case 'medium':
+      case StandardGameStringEnum.NORMAL:
         return StandardGameEnum.NORMAL;
-      case 'hard':
+      case StandardGameStringEnum.HARD:
         return StandardGameEnum.HARD;
-      default:
-        return StandardGameEnum.NORMAL;
     }
   }
 
@@ -232,5 +230,9 @@ export class GameService {
 
   get currentDifficulty(): StandardGameEnum {
     return this._difficultyMode
+  }
+
+  get currentDifficultyString(): StandardGameStringEnum {
+    return this._difficultyModeString;
   }
 }

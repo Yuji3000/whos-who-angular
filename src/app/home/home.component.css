@@ -1,12 +1,36 @@
 .intro-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+
   width: 40vw;
-  height: 40vh;
-  margin: 30vh auto 0;
+  margin: 25vh auto 0;
+
+  background-color: var(--sys-surface-container-lowest);
+  padding: 2rem;
+  border-radius: 1rem;
+
+  gap: 1rem;
 }
 
-button {
-  width: 50%;
+.intro-text {
+  text-align: center;
+  font-size: var(--sys-body-large-size);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+  width: 100%;
+}
+
+.home-button {
+  width: 100%;
+  height: 4rem;
+  font-size: var(--sys-headline-large);
 }

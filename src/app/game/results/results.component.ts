@@ -19,7 +19,9 @@ export class ResultsComponent {
   currentDifficulty: StandardGameStringEnum | undefined = undefined;
   resultBoolean: boolean = false;
 
-  constructor(private gameService: GameService, private leaderboardService: LeaderboardService) {}
+  constructor(private gameService: GameService, private leaderboardService: LeaderboardService) {
+    this.currentDifficulty = gameService.currentDifficultyString;
+  }
 
   get gameResultText() {
     this.resultBoolean = this.gameService.playerWon
