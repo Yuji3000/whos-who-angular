@@ -1,7 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {QuestionType} from "./types/question.type";
 import {ChoiceType} from "./types/choice.type";
-import {StandardGameEnum} from "./standard-game.enum";
+import {StandardGameEnum, StandardGameStringEnum} from "./standard-game.enum";
 import {PlaylistService} from "../playlist/playlist.service";
 import {AnswerResponse} from "./types/answer-response.type";
 import {Playlist} from "../playlist/playlist.interface";
@@ -9,7 +9,7 @@ import { SettingsService } from '../settings/settings.service';
 import {CustomPlaylistService} from "../custom-playlist/custom-playlist.service";
 
 interface DifficultyMode {
-  mode: string,
+  mode: StandardGameStringEnum,
   winPercentage: number
 }
 
@@ -30,7 +30,7 @@ export class GameService {
   // Following properties should be loaded from settings service when that's ready
   private _questionsPreferred: number = 5;
   private _difficultyMode: StandardGameEnum = StandardGameEnum.NORMAL;
-
+  private _stringDifficutlyMode: string = ''
   private questions: QuestionType[] = [];
   private _questionsAnsweredCorrectly: number = 0;
   private questionsRemaining: number = 0;
@@ -46,6 +46,7 @@ export class GameService {
     this.settingsService.currentSettings.subscribe((settings: GameSettings) => {
       this._questionsPreferred = settings.numberOfQuestions;
       this._difficultyMode = this.mapDifficultyMode(settings.mode.mode);
+      this._stringDifficutlyMode = settings.mode.mode;
     });
   }
 
@@ -227,5 +228,9 @@ export class GameService {
 
   get acknowledgeGameOver() {
     return this._acknowledgeGameOver;
+  }
+
+  get currentDifficulty(): StandardGameEnum {
+    return this._difficultyMode
   }
 }
