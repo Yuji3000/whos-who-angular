@@ -1,10 +1,9 @@
 <nav class="navbar">
-  
-  <mat-toolbar class="toolbar">
-    
-    <a class="nav-link" routerLink="/">Who's Who?</a>
-    <div class="spacer"></div>
-    <a class="nav-link" routerLink="/leaderboards" routerLinkActive="active">Leaderboards</a>
-    <a class="nav-link" routerLink="/settings" routerLinkActive="active">Settings</a>
-  </mat-toolbar>
+    <mat-toolbar class="toolbar">
+        <a mat-button class="nav-link" routerLink="/">Who's Who?</a>
+        <div class="right-elements">
+            <a mat-button class="nav-link" routerLink="/leaderboards" routerLinkActive="active">Leaderboards</a>
+            <a mat-button class="nav-link" routerLink="/settings" routerLinkActive="active">Settings</a>
+        </div>
+    </mat-toolbar>
 </nav>
