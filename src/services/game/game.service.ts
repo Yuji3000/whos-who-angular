@@ -1,10 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {QuestionType} from "./types/question.type";
 import {ChoiceType} from "./types/choice.type";
 import {StandardGameEnum, StandardGameStringEnum} from "./standard-game.enum";
 import {PlaylistService} from "../playlist/playlist.service";
 import {AnswerResponse} from "./types/answer-response.type";
+import {Playlist} from "../playlist/playlist.interface";
 import { SettingsService } from '../settings/settings.service';
+import {CustomPlaylistService} from "../custom-playlist/custom-playlist.service";
 
 interface DifficultyMode {
   mode: StandardGameStringEnum,
@@ -21,12 +23,14 @@ interface GameSettings {
 })
 export class GameService {
 
+  private playlistService: Playlist;
+
   private readonly questionsToCache: number = 5;
 
   // Following properties should be loaded from settings service when that's ready
   private _questionsPreferred: number = 5;
   private _difficultyMode: StandardGameEnum = StandardGameEnum.NORMAL;
-  private _stringDifficutlyMode: string = ''
+  private _difficultyModeString: string = ''
   private questions: QuestionType[] = [];
   private _questionsAnsweredCorrectly: number = 0;
   private questionsRemaining: number = 0;
@@ -35,14 +39,14 @@ export class GameService {
   private _acknowledgeGameOver = false;
 
 
-  constructor(private playlistService: PlaylistService,
-    private settingsService: SettingsService
-  ) {
-      this.questionsRemaining = this._questionsPreferred;
-      this.settingsService.currentSettings.subscribe((settings: GameSettings) => {
-        this._questionsPreferred = settings.numberOfQuestions;
-        this._difficultyMode = this.mapDifficultyMode(settings.mode.mode);
-        this._stringDifficutlyMode = settings.mode.mode;
+  constructor(private injector: Injector, private settingsService: SettingsService) {
+    this.playlistService = this.injector.get(PlaylistService);
+
+    this.questionsRemaining = this._questionsPreferred;
+    this.settingsService.currentSettings.subscribe((settings: GameSettings) => {
+      this._questionsPreferred = settings.numberOfQuestions;
+      this._difficultyMode = this.mapDifficultyMode(settings.mode.mode);
+      this._difficultyModeString = settings.mode.mode;
     });
   }
 
@@ -59,12 +63,21 @@ export class GameService {
     }
   }
 
+  private setPlaylistChoice() {
+    if (this.settingsService.getSettings().customPlaylistSelected) {
+      this.playlistService = this.injector.get(CustomPlaylistService);
+    } else {
+      this.playlistService = this.injector.get(PlaylistService);
+    }
+  }
 
   /**
    * Creates a game by reinitializing all game fields to their default state
    * and adding five questions to memory to help prevent loading times between questions
    */
   async createGame() {
+    this.setPlaylistChoice();
+
     this.questions = [];
     this._questionsAnsweredCorrectly = 0;
     this.questionsRemaining = 0;

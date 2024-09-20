@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SettingsService } from 'src/services/settings/settings.service';
@@ -7,27 +7,23 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import {PlaylistLoaderComponent} from "../../playlist-loader/playlist-loader.component";
+import {MatButtonToggle, MatButtonToggleGroup} from "@angular/material/button-toggle";
 
 interface DifficultyMode {
   mode: string,
   winPercentage: number
 }
 
-interface GameSettings {
-  mode: DifficultyMode;
-  numberOfQuestions: number;
-}
-
 @Component({
   selector: 'app-settings-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, PlaylistLoaderComponent, MatButtonToggleGroup, MatButtonToggle],
   templateUrl: './settings-form.component.html',
   styleUrl: './settings-form.component.css'
 })
 
-export class SettingsFormComponent {
-  numberOfQuestions: number = 0
+export class SettingsFormComponent implements OnInit {
   showSuccessMessage = false;
   difficultyModes: DifficultyMode[] = [
     { mode: 'easy', winPercentage: 50 },
@@ -41,7 +37,8 @@ export class SettingsFormComponent {
       Validators.min(5),
       Validators.max(25)
     ]),
-    mode: new FormControl(undefined, [Validators.required])
+    mode: new FormControl(undefined, [Validators.required]),
+    playlistChoice: new FormControl('', [Validators.required]),
   })
 
   constructor(private settingsService: SettingsService) {}
@@ -52,9 +49,16 @@ export class SettingsFormComponent {
         // console.log('Settings (settings-form) OnInit', settings);
         this.settingForm.patchValue({
           numberOfQuestions: settings.numberOfQuestions,
-          mode: settings.mode.mode 
+          mode: settings.mode.mode,
+          playlistChoice: settings.customPlaylistSelected ? 'custom' : 'default'
         });
         this.difficultyModes = this.settingsService.difficultyModes;
+
+        if (settings.customPlaylistSelected) {
+          this.settingForm.get('playlistChoice')?.enable();
+        } else {
+          this.settingForm.get('playlistChoice')?.disable();
+        }
       }
     });
   }
@@ -63,9 +67,11 @@ export class SettingsFormComponent {
     if (this.settingForm.valid) {
       const mode = this.settingForm.controls['mode'].value;
       const numberOfQuestions = this.settingForm.controls['numberOfQuestions'].value;
+      const playlistSelected = this.settingForm.controls['playlistChoice'].value;
       this.settingsService.updateMode(mode);
       this.settingsService.updateNumberOfQuestions(numberOfQuestions);
-      
+      this.settingsService.setCustomPlaylist(playlistSelected === 'custom')
+
       this.showSuccessMessage = true;
       setTimeout(() => {
         this.showSuccessMessage = false;

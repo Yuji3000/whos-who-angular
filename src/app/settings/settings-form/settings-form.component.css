@@ -1,3 +1,16 @@
+#settings-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  background-color: var(--sys-surface-container-lowest);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
 .error {
   color: var(--sys-error);
   font-size: 0.875rem; 

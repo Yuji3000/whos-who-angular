@@ -1,5 +1,5 @@
 <mat-card>
-  <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
+  <form id="settings-form-container" [formGroup]="settingForm" (ngSubmit)="onSubmit()">
     <mat-card-content>
       <mat-form-field>
         <mat-label for="numberOfQuestions">Number Of Questions</mat-label>
@@ -29,12 +29,16 @@
         </mat-form-field>
       </mat-card-content>
 
+      <mat-button-toggle-group formControlName="playlistChoice">
+          <mat-button-toggle value="default">Default Playlist</mat-button-toggle>
+          <mat-button-toggle value="custom">Your Playlist</mat-button-toggle>
+      </mat-button-toggle-group>
+
       <mat-card-actions>
         <button mat-flat-button color="primary" type="submit" [disabled]="settingForm.invalid" [ngClass]="settingForm.invalid ? 'disabled' : ''">Update Settings</button>
       </mat-card-actions>
       <div *ngIf="showSuccessMessage" class="successMessage">Settings Updated!</div>
     </form>
   </mat-card>
-
     
 
