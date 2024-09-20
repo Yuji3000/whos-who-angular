@@ -52,7 +52,8 @@ export class SettingsFormComponent implements OnInit {
         this.settingForm.patchValue({
           numberOfQuestions: settings.numberOfQuestions,
           mode: settings.mode.mode,
-          playlistChoice: settings.customPlaylistSelected ? 'custom' : 'default'
+          playlistChoice: settings.customPlaylistSelected ? 'custom' : 'default',
+          allowExplicit: settings.allowExplicit,
         });
         this.difficultyModes = this.settingsService.difficultyModes;
 
