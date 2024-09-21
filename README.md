@@ -10,9 +10,9 @@
 - [Contributors](#contributors)
 
 ## About
-Who's who is a song guessing game for everyone! A user can hear a song clip and guess from a multiple choice selection. 
+Who's who is a song guessing game for everyone! A user can hear a song clip and guess from a multiple choice selection. Who's Who is a front end application following [business requirements](OUTLINE.md) with a wireframe and component functionality breakdown for planning.
 
-This project was created during [Cook Systems](https://cooksys.com/) <a href="https://www.allaboutfasttrack.com/" style="color: green;">Fast Track</a> Program. You can view the original documentation for the project requirements [here](OUTLINE.md).
+This project was created during [Cook Systems](https://cooksys.com/) <a href="https://www.allaboutfasttrack.com/" style="color: green;">Fast Track</a> Program.
 
 ### Features
 - Use a standard or custom Spotify playlist!
@@ -58,7 +58,7 @@ This project was created during [Cook Systems](https://cooksys.com/) <a href="ht
   <tr>
     <td>
       <div align="center"><a href="https://github.com/makmn1">GitHub</a><br>
-      <a href="https://www.linkedin.com/in/">LinkedIn</a></div>
+      <a href="https://www.linkedin.com/in/mohamedx2/">LinkedIn</a></div>
     </td>
     <td>
       <div align="center"><a href="https://github.com/Yuji3000">GitHub</a><br>
