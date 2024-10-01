@@ -7,6 +7,7 @@
 # Table of Contents
 - [Screenshots](#app-examples)
 - [Tech & Tools Used](#tech-and-tools)
+- [How to Run](#how-to-run)
 - [Contributors](#contributors)
 
 ## About
@@ -16,7 +17,7 @@ This project was created during the [Cook Systems](https://cooksys.com/) <a href
 
 ### Features
 - Use a standard or custom Spotify playlist!
-- Choice of non-explict or explict song option
+- Filter out explicit songs option
 - Choice of the amount of questions in a game
 - Difficulty modes
 - Leaderboards are paginated and organized by mode
@@ -41,7 +42,11 @@ This project was created during the [Cook Systems](https://cooksys.com/) <a href
   - [<img src="src/assets/readme-images/howler-js.png" alt="howler logo" width="130" height="auto">](https://github.com/goldfire/howler.js/tree/master)
 
 
-
+# How to Run
+1. Clone the repository
+2. In the cloned repository folder, open a command-line terminal and run `npm install`
+3. After that command finishes, run `ng serve`
+4. After a few seconds, you should be able to run the app by visiting `localhost:4200` in your browser
 
 
   # Contributors
